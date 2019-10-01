@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.scss";
+import { Container } from "react-bootstrap";
 
 const App: React.FC = () => {
-  return <div className="container">Hello World</div>;
+  return <Container>Hello World</Container>;
 };
 
 export default App;
