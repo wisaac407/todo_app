@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.scss";
-import { Container, Card } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import TodoList from "./TodoList";
 import { Todo } from "./types";
 
