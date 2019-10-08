@@ -1,5 +1,9 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+.card.loading {
+  color: $text-muted;
+}
+
 .todo-input-group {
   width: 100% !important;
 }

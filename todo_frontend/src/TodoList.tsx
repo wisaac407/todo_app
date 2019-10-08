@@ -5,7 +5,7 @@ import React, {
   ChangeEvent
 } from "react";
 import { Todo } from "./types";
-import { Card, Button, Form, InputGroup, Col } from "react-bootstrap";
+import { Card, Button, Form, InputGroup, Col, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -41,6 +41,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onChange, onDelete }) => (
 
 interface TodoListProps {
   todos: Todo[];
+  loading: boolean;
   createTodo: (todo: string) => void;
   updateTodo: (todo: Partial<Todo> & Pick<Todo, "id">) => void;
   deleteTodo: (todo: Todo) => void;
@@ -48,6 +49,7 @@ interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({
   todos,
+  loading,
   createTodo,
   updateTodo,
   deleteTodo
@@ -69,7 +71,7 @@ const TodoList: React.FC<TodoListProps> = ({
   };
 
   return (
-    <Card>
+    <Card className={(loading && "loading") || undefined}>
       <Card.Body>
         <Card.Title>Task List:</Card.Title>
         <div className="todos">
@@ -98,9 +100,16 @@ const TodoList: React.FC<TodoListProps> = ({
               type="text"
               value={newTodo}
               onChange={handleChange}
+              disabled={loading}
             ></Form.Control>
             <InputGroup.Append>
-              <Button type="submit">Add</Button>
+              <Button type="submit" disabled={loading}>
+                {loading ? (
+                  <Spinner animation="border" size="sm"></Spinner>
+                ) : (
+                  "Add"
+                )}
+              </Button>
             </InputGroup.Append>
           </InputGroup>
         </Form>
