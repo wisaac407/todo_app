@@ -19,4 +19,21 @@
   &:hover .todo-trash {
     opacity: 1;
   }
+
+  &-enter {
+    opacity: 0;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    @include transition($transition-fade);
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+  &-exit-active {
+    opacity: 0;
+    @include transition($transition-fade);
+  }
 }

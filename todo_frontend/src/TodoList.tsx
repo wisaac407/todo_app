@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import "./TodoList.scss";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 interface TodoItemProps {
   todo: Todo;
@@ -72,16 +73,23 @@ const TodoList: React.FC<TodoListProps> = ({
       <Card.Body>
         <Card.Title>Task List:</Card.Title>
         <div className="todos">
-          {todos.length > 0
-            ? todos.map(todo => (
-                <TodoItem
-                  key={todo.id}
-                  todo={todo}
-                  onChange={updateTodo}
-                  onDelete={deleteTodo}
-                ></TodoItem>
+          <TransitionGroup>
+            {todos.length > 0 ? (
+              todos.map(todo => (
+                <CSSTransition timeout={150} classNames="todo" key={todo.id}>
+                  <TodoItem
+                    todo={todo}
+                    onChange={updateTodo}
+                    onDelete={deleteTodo}
+                  ></TodoItem>
+                </CSSTransition>
               ))
-            : "No tasks"}
+            ) : (
+              <CSSTransition timeout={0} key={"no-tasks"}>
+                <div>No tasks</div>
+              </CSSTransition>
+            )}
+          </TransitionGroup>
         </div>
         <Form onSubmit={handleFormSubmit} inline>
           <InputGroup className="todo-input-group">
