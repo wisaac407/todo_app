@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import "./App.scss";
-import { Container } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 import TodoList from "./TodoList";
 import { Todo } from "./types";
 import TodoService from "./TodoService";
@@ -46,15 +46,23 @@ const App: React.FC = () => {
   );
 
   return (
-    <Container>
-      <TodoList
-        createTodo={createTodo}
-        updateTodo={updateTodo}
-        deleteTodo={deleteTodo}
-        todos={memoTodos}
-        loading={loading}
-      ></TodoList>
-    </Container>
+    <div>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand>Task List</Navbar.Brand>
+        </Container>
+      </Navbar>
+
+      <Container className="mt-4">
+        <TodoList
+          createTodo={createTodo}
+          updateTodo={updateTodo}
+          deleteTodo={deleteTodo}
+          todos={memoTodos}
+          loading={loading}
+        ></TodoList>
+      </Container>
+    </div>
   );
 };
 
