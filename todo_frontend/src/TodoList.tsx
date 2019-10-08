@@ -5,7 +5,9 @@ import React, {
   ChangeEvent
 } from "react";
 import { Todo } from "./types";
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button, Form, InputGroup } from "react-bootstrap";
+
+import "./TodoList.scss";
 
 interface TodoItemProps {
   todo: Todo;
@@ -54,22 +56,30 @@ const TodoList: React.FC<TodoListProps> = ({
   return (
     <Card>
       <Card.Body>
+        <Card.Title>Task List:</Card.Title>
         <div className="todos">
-          {todos.map(todo => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onChange={updateTodo}
-            ></TodoItem>
-          ))}
+          {todos.length > 0
+            ? todos.map(todo => (
+                <TodoItem
+                  key={todo.id}
+                  todo={todo}
+                  onChange={updateTodo}
+                ></TodoItem>
+              ))
+            : "No tasks"}
         </div>
-        <Form onSubmit={handleFormSubmit}>
-          <Form.Control
-            type="text"
-            value={newTodo}
-            onChange={handleChange}
-          ></Form.Control>
-          <Button type="submit">Add</Button>
+        <Form onSubmit={handleFormSubmit} inline>
+          <InputGroup className="todo-input-group">
+            <Form.Control
+              className="todo-input"
+              type="text"
+              value={newTodo}
+              onChange={handleChange}
+            ></Form.Control>
+            <InputGroup.Append>
+              <Button type="submit">Add</Button>
+            </InputGroup.Append>
+          </InputGroup>
         </Form>
       </Card.Body>
     </Card>
