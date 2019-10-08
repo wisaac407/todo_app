@@ -22,14 +22,36 @@ const App: React.FC = () => {
     handleServiceRequest(TodoService.getTodos());
   }, []);
 
-  const createTodo = (task: string) =>
+  const createTodo = (task: string) => {
+    setTodos([
+      ...todos,
+      {
+        task,
+        id: -1,
+        complete: false
+      }
+    ]);
     handleServiceRequest(TodoService.createTodo(task));
+  };
 
-  const updateTodo = (todo: Partial<Todo> & Pick<Todo, "id">) =>
+  const updateTodo = (todo: Partial<Todo> & Pick<Todo, "id">) => {
+    setTodos(
+      todos.map(td =>
+        td.id === todo.id
+          ? {
+              ...td,
+              ...todo
+            }
+          : td
+      )
+    );
     handleServiceRequest(TodoService.updateTodo(todo));
+  };
 
-  const deleteTodo = (todo: Todo) =>
+  const deleteTodo = (todo: Todo) => {
+    setTodos(todos.filter(td => td.id !== todo.id));
     handleServiceRequest(TodoService.deleteTodo(todo));
+  };
 
   const memoTodos = useMemo(
     () =>
