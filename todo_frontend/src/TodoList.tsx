@@ -24,8 +24,17 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onChange }) => (
   ></Form.Check>
 );
 
-const TodoList: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+interface TodoListProps {
+  todos: Todo[];
+  createTodo: (todo: string) => void;
+  updateTodo: (todo: Partial<Todo> & Pick<Todo, "id">) => void;
+}
+
+const TodoList: React.FC<TodoListProps> = ({
+  todos,
+  createTodo,
+  updateTodo
+}) => {
   const [newTodo, setNewTodo] = useState("");
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = event => {
@@ -33,29 +42,13 @@ const TodoList: React.FC = () => {
   };
 
   const handleFormSubmit: FormEventHandler = event => {
-    console.log(event);
     event.preventDefault();
 
     // Add task
-    setTodos([
-      ...todos,
-      {
-        complete: false,
-        id: Math.floor(Math.random() * 100000),
-        task: newTodo
-      }
-    ]);
+    createTodo(newTodo);
 
     // Clear new todo
     setNewTodo("");
-  };
-
-  const updateTodo = (todoUpdate: Partial<Todo> & Pick<Todo, "id">) => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === todoUpdate.id ? { ...todo, ...todoUpdate } : todo
-      )
-    );
   };
 
   return (
