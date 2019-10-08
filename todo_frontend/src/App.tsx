@@ -24,11 +24,15 @@ const App: React.FC = () => {
       )
     );
 
+  const deleteTodo = ({ id }: Todo) =>
+    setTodos(todos.filter(todo => todo.id !== id));
+
   return (
     <Container>
       <TodoList
         createTodo={createTodo}
         updateTodo={updateTodo}
+        deleteTodo={deleteTodo}
         todos={todos}
       ></TodoList>
     </Container>

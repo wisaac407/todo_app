@@ -1,3 +1,22 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 .todo-input-group {
   width: 100% !important;
+}
+
+.todo {
+  padding: $spacer / 2 0;
+
+  .todo-trash {
+    background: none !important;
+    border: none !important;
+    color: $body-color !important;
+    box-shadow: none !important;
+    float: right;
+    opacity: 0;
+    @include transition($transition-fade);
+  }
+  &:hover .todo-trash {
+    opacity: 1;
+  }
 }
