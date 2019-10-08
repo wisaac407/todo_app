@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./App.scss";
 import { Container } from "react-bootstrap";
 import TodoList from "./TodoList";
@@ -26,6 +26,20 @@ const App: React.FC = () => {
 
   const deleteTodo = ({ id }: Todo) =>
     setTodos(todos.filter(todo => todo.id !== id));
+
+  const memoTodos = useMemo(
+    () =>
+      todos.sort((a, b) => {
+        if (a.complete && !b.complete) {
+          return 1;
+        } else if (b.complete && !a.complete) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }),
+    [todos]
+  );
 
   return (
     <Container>
