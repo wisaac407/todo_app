@@ -1,9 +1,14 @@
 import React from "react";
 import "./App.scss";
-import { Container } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
+import TodoList from "./TodoList";
 
 const App: React.FC = () => {
-  return <Container>Hello World</Container>;
+  return (
+    <Container>
+      <TodoList></TodoList>
+    </Container>
+  );
 };
 
 export default App;
