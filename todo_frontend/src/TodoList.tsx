@@ -19,7 +19,7 @@ interface TodoItemProps {
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, onChange, onDelete }) => (
-  <Form.Row className="todo">
+  <Form.Row className={todo.complete ? "todo todo-complete" : "todo"}>
     <Col>
       <Form.Check
         custom

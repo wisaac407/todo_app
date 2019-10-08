@@ -7,6 +7,24 @@
 .todo {
   padding: $spacer / 2 0;
 
+  &.todo-complete * {
+    color: $text-muted;
+    text-decoration: line-through;
+
+    .todo-trash {
+      color: $text-muted !important;
+    }
+
+    .custom-control-input {
+      &:checked ~ .custom-control-label::before {
+        background-color: $gray-600;
+      }
+      &:indeterminate ~ .custom-control-label::before {
+        background-color: $gray-600;
+      }
+    }
+  }
+
   .todo-trash {
     background: none !important;
     border: none !important;
