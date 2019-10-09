@@ -1,4 +1,4 @@
-import { Todo } from "./types";
+import { Todo } from "../types";
 
 // Stand-in service file that simulates api latency.
 

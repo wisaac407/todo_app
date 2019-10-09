@@ -4,7 +4,7 @@ import React, {
   FormEventHandler,
   ChangeEvent
 } from "react";
-import { Todo } from "./types";
+import { Todo } from "../../types";
 import { Card, Button, Form, InputGroup, Col, Spinner } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";

@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useEffect } from "react";
 import "./App.scss";
 import { Container, Navbar } from "react-bootstrap";
-import TodoList from "./TodoList";
-import { Todo } from "./types";
-import TodoService from "./TodoService";
+import TodoList from "../TodoList/TodoList";
+import { Todo } from "../../types";
+import TodoService from "../../services/TodoService";
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
